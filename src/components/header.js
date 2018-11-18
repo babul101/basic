@@ -17,11 +17,12 @@ class Header extends Component {
         super(props);
 
         this.state = {
-            title:'the keywords are:',
+           // title:'the keywords are:',
             keywords:''
         }
+        
+    console.log(props);
     }
-
 
     // inputChange(event) {
     //     console.log(event.target.value);
@@ -30,6 +31,7 @@ class Header extends Component {
     inputChange(event) {
         this.setState({keywords:event.target.value});
        //this.state.keywords = event.target.value; the code will work but we should not write like this 
+        this.props.newsSearch(event.target.value);
     }    
 
     render() {
@@ -57,8 +59,7 @@ class Header extends Component {
                     <div className='logo'                       
                     onClick={()=>console.log('clicked')}>Logo</div>
                     <input onChange = {this.inputChange.bind(this)}/>
-                    <div>{this.state.title}</div>
-                    <div>{this.state.keywords}</div>
+                    
                 </header>                                              
         )
             

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 //COMPONENTS
 import Header from './components/header';
 import JSON from './db.json';
-
+import NewsList from './components/news_list';
 
 // const App = () => {
 //     console.log(JSON);
@@ -23,14 +23,25 @@ class App extends Component {
         super(props);
 
         this.state = {
-            news:JSON
+            news:JSON,
+            filtered:JSON
         }
+    }
+
+    filterNews(keywords) {
+       let filtered = this.state.news.filter((item) => {
+           return item.title.indexOf(keywords) > -1
+       })
+
+       this.setState({filtered:filtered})
     }
     
     render() {
         return (
             <div>
-            <Header />
+            <Header newsSearch = {keywords => this.filterNews(keywords) } />
+            <h1>Hello CodeNinja!</h1>
+            <NewsList news = {this.state.filtered} />
             </div>
         )
     }
